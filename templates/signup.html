@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            color: #000;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .flash {
+            color: green;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .select-wrapper {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        select#typeSelect {
+            padding: 10px;
+            width: 300px;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        form {
+            display: none;
+        }
+
+        .form-grid {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .form-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .submit-wrapper {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            background-color: #ffea00;
+            color: #000;
+            font-weight: bold;
+            padding: 12px 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #ffd600;
+        }
+    </style>
+    <script>
+        function toggleForms() {
+            const type = document.getElementById('typeSelect').value;
+            document.getElementById('disabledForm').style.display = type === 'Disabled Candidate' ? 'block' : 'none';
+            document.getElementById('writerForm').style.display = type === 'Writer' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+
+    <h1>WELCOME TO HAND_2_WRITE</h1>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="select-wrapper">
+        <label for="typeSelect">Select Type:</label>
+        <select id="typeSelect" onchange="toggleForms()">
+            <option value="">-- Choose --</option>
+            <option value="Disabled Candidate">Disabled Candidate</option>
+            <option value="Writer">Writer</option>
+        </select>
+    </div>
+
+    <div class="form-container">
+
+        <!-- Disabled Candidate Form -->
+        <form id="disabledForm" action="/add_user" method="POST">
+            <input type="hidden" name="type" value="Disabled Candidate">
+            <div class="form-grid">
+                <div class="form-column">
+                    <label>Name:</label><input name="name" required>
+                    <label>Age:</label><input type="number" name="age" required>
+                    <label>Gender:</label>
+                    <select name="gender"><option>Male</option><option>Female</option><option>Other</option></select>
+                    <label>Mobile:</label><input type="tel" name="mobile" required>
+                    <label>Email:</label><input type="email" name="email" required>
+                    <label>Pincode:</label><input name="pincode">
+                    <label>State:</label><input name="state">
+                </div>
+                <div class="form-column">
+                    <label>District:</label><input name="district">
+                    <label>City/Village:</label><input name="city">
+                    <label>Disable Type:</label>
+                    <select name="disable_type">
+                        <option>Temp Accident</option>
+                        <option>Anophthalmia</option>
+                        <option>Amputee</option>
+                    </select>
+                    <label>Date of Exam:</label><input type="date" name="exam_date">
+                    <label>Name of Exam:</label><input name="exam_name">
+                    <label>Min Qualification:</label><input name="qualification">
+                    <label>Center of Exam:</label><input name="exam_center">
+                </div>
+                <div class="form-column">
+                    <label>Language Type:</label><input name="language">
+                    <label>Username:</label><input name="username" required>
+                    <label>Password:</label><input type="password" name="password" required>
+                    <label>Confirm Password:</label><input type="password" name="confirm_password" required>
+                </div>
+            </div>
+            <div class="submit-wrapper">
+                <button class="submit-btn" type="submit">REGISTER</button>
+            </div>
+        </form>
+
+        <!-- Writer Form -->
+        <form id="writerForm" action="/add_user" method="POST">
+            <input type="hidden" name="type" value="Writer">
+            <div class="form-grid">
+                <div class="form-column">
+                    <label>Name:</label><input name="name" required>
+                    <label>Age:</label><input type="number" name="age" required>
+                    <label>Gender:</label>
+                    <select name="gender"><option>Male</option><option>Female</option><option>Other</option></select>
+                    <label>Mobile:</label><input type="tel" name="mobile" required>
+                    <label>Email:</label><input type="email" name="email" required>
+                    <label>Pincode:</label><input name="pincode">
+                    <label>State:</label><input name="state">
+                </div>
+                <div class="form-column">
+                    <label>District:</label><input name="district">
+                    <label>City/Village:</label><input name="city">
+                    <label>Current Qualification:</label><input name="current_qualification">
+                    <label>Highest Qualification:</label><input name="highest_qualification">
+                    <label>Language Type:</label><input name="language">
+                    <label>Username:</label><input name="username" required>
+                    <label>Password:</label><input type="password" name="password" required>
+                    <label>Confirm Password:</label><input type="password" name="confirm_password" required>
+                </div>
+            </div>
+            <div class="submit-wrapper">
+                <button class="submit-btn" type="submit">REGISTER</button>
+            </div>
+        </form>
+
+    </div>
+
+</body>
+</html>
