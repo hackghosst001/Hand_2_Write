@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writer Profile | Hand_2_write</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --card-bg: #ffffff;
+            --page-bg: #f9fafb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--page-bg);
+            color: #1f2937;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .h-screen {
+            height: 100vh;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .text-gray-500 {
+            color: var(--muted);
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-muted {
+            color: var(--muted);
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .avatar {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 9999px;
+            border: 2px solid black;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .border {
+            border: 1px solid var(--border);
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .capitalize {
+            text-transform: capitalize;
+        }
+
+        @media (max-width: 768px) {
+            .grid-cols-2,
+            .grid-cols-3,
+            .grid-cols-4 {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Hand_2_write</h1>
+
+        <div id="loading" class="flex justify-center items-center h-screen">
+            <p>Loading profile...</p>
+        </div>
+
+        <div id="profile-content" style="display: none;">
+            <!-- Profile Picture -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Profile Picture</h2>
+                </div>
+                <div class="card-content">
+                    <div class="flex items-center gap-4">
+                        <div class="avatar">
+                            <img id="profile-picture" src="" alt="Profile Picture">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Info -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Basic Info</h2>
+                </div>
+                <div class="card-content grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Name</p>
+                        <p id="name" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Age</p>
+                        <p id="age" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Gender</p>
+                        <p id="gender" class="text-lg capitalize"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Contact Info</h2>
+                </div>
+                <div class="card-content grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Mobile</p>
+                        <p id="mobile" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Email</p>
+                        <p id="email" class="text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Info -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Address Info</h2>
+                </div>
+                <div class="card-content grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Pincode</p>
+                        <p id="pincode" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">State</p>
+                        <p id="state" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">District</p>
+                        <p id="district" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">City/Village</p>
+                        <p id="cityVillage" class="text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Info Language Type -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Writing Info Language Type</h2>
+                </div>
+                <div class="card-content grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Writing Preferences</p>
+                        <p id="writingPreferences" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Communication Language</p>
+                        <p id="communicationLanguage" class="text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Education Information -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Current Education Information</h2>
+                </div>
+                <div class="card-content grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Highest Qualification</p>
+                        <p id="currentQualification" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Institution</p>
+                        <p id="currentInstitution" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Year of Completion</p>
+                        <p id="currentCompletionYear" class="text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employment Information -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Employment Information</h2>
+                </div>
+                <div class="card-content grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Employment Status</p>
+                        <p id="employmentStatus" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Organization</p>
+                        <p id="organization" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Designation</p>
+                        <p id="designation" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Sector/Private</p>
+                        <p id="sector" class="text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highest Education Information -->
+            <div class="card mb-6">
+                <div class="card-header">
+                    <h2 class="card-title">Highest Education Information</h2>
+                </div>
+                <div class="card-content grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Highest Qualification</p>
+                        <p id="highestQualification" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Institution</p>
+                        <p id="highestInstitution" class="text-lg"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Year of Completion</p>
+                        <p id="highestCompletionYear" class="text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Notifications</h2>
+                </div>
+                <div class="card-content">
+                    <div class="border rounded-lg p-4">
+                        <p class="text-muted">No new notifications</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="error-message" class="flex justify-center items-center h-screen" style="display: none;">
+            <p>No profile data available</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // This would be replaced with your actual data fetching logic
+            // For now, we'll use mock data that simulates what your Flask backend would provide
+
+            // Mock data - replace with actual data from your backend
+            const mockData = {
+                name: 'John Doe',
+                age: '32',
+                gender: 'male',
+                mobile: '9876543210',
+                email: 'john@example.com',
+                pincode: '560001',
+                state: 'Karnataka',
+                district: 'Bangalore',
+                cityVillage: 'Bangalore',
+                writingPreferences: 'Fiction',
+                communicationLanguage: 'English',
+                currentQualification: 'MA in English Literature',
+                currentInstitution: 'University of Bangalore',
+                currentCompletionYear: '2020',
+                employmentStatus: 'Self-Employed',
+                organization: 'Freelance Writer',
+                designation: 'Content Writer',
+                sector: 'Private',
+                highestQualification: 'MA in English Literature',
+                highestInstitution: 'University of Bangalore',
+                highestCompletionYear: '2020',
+                profilePicture: 'https://randomuser.me/api/portraits/men/1.jpg'
+            };
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // In a real app, you would fetch this from your Flask API
+                // fetch('/api/writer-profile')
+                //     .then(response => response.json())
+                //     .then(data => {
+                //         document.getElementById('loading').style.display = 'none';
+                //         if (data) {
+                //             populateProfile(data);
+                //             document.getElementById('profile-content').style.display = 'block';
+                //         } else {
+                //             document.getElementById('error-message').style.display = 'flex';
+                //         }
+                //     })
+                //     .catch(error => {
+                //         console.error('Error:', error);
+                //         document.getElementById('loading').style.display = 'none';
+                //         document.getElementById('error-message').style.display = 'flex';
+                //     });
+
+                // For now, we'll use the mock data
+                document.getElementById('loading').style.display = 'none';
+                populateProfile(mockData);
+                document.getElementById('profile-content').style.display = 'block';
+            }, 1000);
+
+            function populateProfile(data) {
+                document.getElementById('profile-picture').src = data.profilePicture || '';
+                document.getElementById('name').textContent = data.name || 'N/A';
+                document.getElementById('age').textContent = data.age || 'N/A';
+                document.getElementById('gender').textContent = data.gender || 'N/A';
+                document.getElementById('mobile').textContent = data.mobile || 'N/A';
+                document.getElementById('email').textContent = data.email || 'N/A';
+                document.getElementById('pincode').textContent = data.pincode || 'N/A';
+                document.getElementById('state').textContent = data.state || 'N/A';
+                document.getElementById('district').textContent = data.district || 'N/A';
+                document.getElementById('cityVillage').textContent = data.cityVillage || 'N/A';
+                document.getElementById('writingPreferences').textContent = data.writingPreferences || 'N/A';
+                document.getElementById('communicationLanguage').textContent = data.communicationLanguage || 'N/A';
+                document.getElementById('currentQualification').textContent = data.currentQualification || 'N/A';
+                document.getElementById('currentInstitution').textContent = data.currentInstitution || 'N/A';
+                document.getElementById('currentCompletionYear').textContent = data.currentCompletionYear || 'N/A';
+                document.getElementById('employmentStatus').textContent = data.employmentStatus || 'N/A';
+                document.getElementById('organization').textContent = data.organization || 'N/A';
+                document.getElementById('designation').textContent = data.designation || 'N/A';
+                document.getElementById('sector').textContent = data.sector || 'N/A';
+                document.getElementById('highestQualification').textContent = data.highestQualification || 'N/A';
+                document.getElementById('highestInstitution').textContent = data.highestInstitution || 'N/A';
+                document.getElementById('highestCompletionYear').textContent = data.highestCompletionYear || 'N/A';
+            }
+        });
+    </script>
+</body>
+</html>

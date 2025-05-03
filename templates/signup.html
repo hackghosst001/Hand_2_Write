@@ -2,195 +2,831 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SignUp Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Portal - Sign Up</title>
+    <script>
+        function toggleFields() {
+            let role = document.getElementById("role").value;
+            document.getElementById("dcFields").style.display = role === "Disabled Candidate" ? "block" : "none";
+            document.getElementById("wFields").style.display = role === "Writer" ? "block" : "none";
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #ffffff;
-            color: #000;
+        * {
             margin: 0;
-            padding: 40px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        h1 {
+        body {
+            background-color: white;
+            color: #333;
+        }
+
+        header {
+            background-color: black;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: yellow;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .form-header {
             text-align: center;
             margin-bottom: 30px;
         }
 
-        .flash {
-            color: green;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .select-wrapper {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        select#typeSelect {
-            padding: 10px;
-            width: 300px;
+        .form-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
         }
 
         .form-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: #f9f9f9;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        form {
-            display: none;
-        }
-
-        .form-grid {
             display: flex;
             gap: 40px;
-            flex-wrap: wrap;
         }
 
         .form-column {
             flex: 1;
-            min-width: 300px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
-        label {
-            font-weight: bold;
+        .form-column h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
             display: block;
-            margin-top: 10px;
+            margin-bottom: 8px;
+            font-weight: bold;
         }
 
-        input, select {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .submit-wrapper {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .submit-btn {
-            background-color: #ffea00;
-            color: #000;
-            font-weight: bold;
-            padding: 12px 30px;
-            border: none;
-            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             font-size: 16px;
         }
 
-        .submit-btn:hover {
-            background-color: #ffd600;
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: yellow;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .btn {
+            background-color: yellow;
+            color: black;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #e6e600;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                display: none;
+            }
         }
     </style>
-    <script>
-        function toggleForms() {
-            const type = document.getElementById('typeSelect').value;
-            document.getElementById('disabledForm').style.display = type === 'Disabled Candidate' ? 'block' : 'none';
-            document.getElementById('writerForm').style.display = type === 'Writer' ? 'block' : 'none';
-        }
-    </script>
 </head>
 <body>
 
-    <h1>WELCOME TO HAND_2_WRITE</h1>
+    <header>
+        <div class="logo">Accessibility Portal</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div class="flash">{{ messages[0] }}</div>
-    {% endif %}
-    {% endwith %}
+    <div class="container">
+        <div class="form-header">
+            <h1>Create Your Account</h1>
+            <p>Select your account type to get started</p>
+        </div>
 
-    <div class="select-wrapper">
-        <label for="typeSelect">Select Type:</label>
-        <select id="typeSelect" onchange="toggleForms()">
-            <option value="">-- Choose --</option>
-            <option value="Disabled Candidate">Disabled Candidate</option>
-            <option value="Writer">Writer</option>
-        </select>
-    </div>
-
-    <div class="form-container">
+        <div class="form-group">
+            <label for="userType">Select Type:</label>
+            <select id="userType" class="form-control" onchange="toggleForms()">
+                <option value="">-- Select Account Type --</option>
+                <option value="disabled">Disabled Candidate</option>
+                <option value="writer">Writer</option>
+            </select>
+        </div>
 
         <!-- Disabled Candidate Form -->
-        <form id="disabledForm" action="/add_user" method="POST">
-            <input type="hidden" name="type" value="Disabled Candidate">
-            <div class="form-grid">
+        <form id="disabledForm" class="hidden">
+            <div class="form-container">
                 <div class="form-column">
-                    <label>Name:</label><input name="name" required>
-                    <label>Age:</label><input type="number" name="age" required>
-                    <label>Gender:</label>
-                    <select name="gender"><option>Male</option><option>Female</option><option>Other</option></select>
-                    <label>Mobile:</label><input type="tel" name="mobile" required>
-                    <label>Email:</label><input type="email" name="email" required>
-                    <label>Pincode:</label><input name="pincode">
-                    <label>State:</label><input name="state">
+                    <h2>Basic Information</h2>
+
+                    <div class="form-group">
+                        <label for="disabledFirstName">First Name*</label>
+                        <input type="text" id="disabledFirstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledLastName">Last Name*</label>
+                        <input type="text" id="disabledLastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledDob">Date of Birth*</label>
+                        <input type="date" id="disabledDob" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledGender">Gender*</label>
+                        <select id="disabledGender" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Other</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div class="form-column">
-                    <label>District:</label><input name="district">
-                    <label>City/Village:</label><input name="city">
-                    <label>Disable Type:</label>
-                    <select name="disable_type">
-                        <option>Temp Accident</option>
-                        <option>Anophthalmia</option>
-                        <option>Amputee</option>
-                    </select>
-                    <label>Date of Exam:</label><input type="date" name="exam_date">
-                    <label>Name of Exam:</label><input name="exam_name">
-                    <label>Min Qualification:</label><input name="qualification">
-                    <label>Center of Exam:</label><input name="exam_center">
-                </div>
-                <div class="form-column">
-                    <label>Language Type:</label><input name="language">
-                    <label>Username:</label><input name="username" required>
-                    <label>Password:</label><input type="password" name="password" required>
-                    <label>Confirm Password:</label><input type="password" name="confirm_password" required>
+                    <h2>Contact Information</h2>
+
+                    <div class="form-group">
+                        <label for="disabledMobile">Mobile* (10 digits)</label>
+                        <input type="tel" id="disabledMobile" pattern="[0-9]{10}" placeholder="e.g. 9876543210" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledEmail">Email*</label>
+                        <input type="email" id="disabledEmail" placeholder="example@gmail.com" required>
+                    </div>
+
+                    <h2 style="margin-top: 30px;">Address Information</h2>
+
+                    <div class="form-group">
+                        <label for="disabledCity">City/Village*</label>
+                        <input type="text" id="disabledCity" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledDistrict">District*</label>
+                        <input type="text" id="disabledDistrict" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledState">State/UT*</label>
+                        <select id="disabledState" required>
+                            <option value="">-- Select State --</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <!-- Add all Indian states and UTs here -->
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledPincode">Pin-code* (6 digits)</label>
+                        <input type="text" id="disabledPincode" pattern="[0-9]{6}" required>
+                    </div>
                 </div>
             </div>
-            <div class="submit-wrapper">
-                <button class="submit-btn" type="submit">REGISTER</button>
+
+            <div class="form-container" style="margin-top: 30px;">
+                <div class="form-column">
+                    <h2>Disability Information</h2>
+
+                    <div class="form-group">
+                        <label for="disabledType">Disability Type*</label>
+                        <select id="disabledType" required>
+                            <option value="">-- Select Disability Type --</option>
+                            <option value="Temp Accident">Temporary Accident</option>
+                            <option value="Anophthalmia">Anophthalmia</option>
+                            <option value="Amputee">Amputee</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledCertificate">Upload Disability Certificate* (PNG, max 32KB)</label>
+                        <input type="file" id="disabledCertificate" accept=".png" required>
+                    </div>
+
+                    <h2 style="margin-top: 30px;">Employment Information</h2>
+
+                    <div class="form-group">
+                        <label for="disabledEmploymentStatus">Employment Status*</label>
+                        <select id="disabledEmploymentStatus" required onchange="toggleEmploymentFields('disabled')">
+                            <option value="">-- Select Status --</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student</option>
+                            <option value="Retired">Retired</option>
+                        </select>
+                    </div>
+
+                    <div id="disabledEmploymentFields" class="hidden">
+                        <div class="form-group">
+                            <label for="disabledOrganization">Organization*</label>
+                            <input type="text" id="disabledOrganization">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disabledDesignation">Designation*</label>
+                            <input type="text" id="disabledDesignation">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disabledSector">Sector*</label>
+                            <select id="disabledSector">
+                                <option value="">-- Select Sector --</option>
+                                <option value="Private">Private</option>
+                                <option value="Government">Government</option>
+                                <option value="Public Sector">Public Sector</option>
+                                <option value="Self Employed">Self Employed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <h2>Education Information</h2>
+
+                    <h3>Current Education</h3>
+                    <div class="form-group">
+                        <label for="disabledCurrentQualification">Qualification</label>
+                        <select id="disabledCurrentQualification">
+                            <option value="">-- Select Qualification --</option>
+                            <option value="High School">High School</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledCurrentInstitution">Institution</label>
+                        <input type="text" id="disabledCurrentInstitution">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledCurrentYear">Year of Completion</label>
+                        <select id="disabledCurrentYear">
+                            <option value="">-- Select Year --</option>
+                            <!-- Years will be populated by JavaScript -->
+                        </select>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Highest Education</h3>
+                    <div class="form-group">
+                        <label for="disabledHighestQualification">Qualification</label>
+                        <select id="disabledHighestQualification">
+                            <option value="">-- Select Qualification --</option>
+                            <option value="High School">High School</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledHighestInstitution">Institution</label>
+                        <input type="text" id="disabledHighestInstitution">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledHighestYear">Year of Completion</label>
+                        <select id="disabledHighestYear">
+                            <option value="">-- Select Year --</option>
+                            <!-- Years will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 30px;">
+                <div class="form-column">
+                    <h2>Preferences</h2>
+
+                    <h3>Communication Preferences</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="disabledEmailPref">
+                        <label for="disabledEmailPref">Email</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="disabledSMSPref">
+                        <label for="disabledSMSPref">SMS</label>
+                    </div>
+
+                    <h3 style="margin-top: 20px;">Accessibility Preferences</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="disabledScreenReader">
+                        <label for="disabledScreenReader">Screen Reader</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="disabledHighContrast">
+                        <label for="disabledHighContrast">High Contrast</label>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <h2>Upcoming Examination Info</h2>
+
+                    <div class="form-group">
+                        <label for="disabledExamDate">Date of Exam</label>
+                        <input type="date" id="disabledExamDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledExamName">Name of Exam</label>
+                        <input type="text" id="disabledExamName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledExamQualification">Minimum Qualification Required</label>
+                        <select id="disabledExamQualification">
+                            <option value="">-- Select Qualification --</option>
+                            <option value="High School">High School</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledExamCenter">Centre of Exam</label>
+                        <input type="text" id="disabledExamCenter">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledExamLanguage">Language Type</label>
+                        <input type="text" id="disabledExamLanguage">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 30px;">
+                <div class="form-column">
+                    <h2>Signup Information</h2>
+
+                    <div class="form-group">
+                        <label for="disabledUsername">Username*</label>
+                        <input type="text" id="disabledUsername" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledPassword">Password*</label>
+                        <input type="password" id="disabledPassword" placeholder="Aman@2005 (At least 4 chars, 1 special char, 4 digits)" required>
+                        <div id="disabledPasswordError" class="error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disabledConfirmPassword">Confirm Password*</label>
+                        <input type="password" id="disabledConfirmPassword" required>
+                        <div id="disabledConfirmPasswordError" class="error"></div>
+                    </div>
+
+                    <button type="submit" class="btn">REGISTER</button>
+                </div>
             </div>
         </form>
 
         <!-- Writer Form -->
-        <form id="writerForm" action="/add_user" method="POST">
-            <input type="hidden" name="type" value="Writer">
-            <div class="form-grid">
+        <form id="writerForm" class="hidden">
+            <div class="form-container">
                 <div class="form-column">
-                    <label>Name:</label><input name="name" required>
-                    <label>Age:</label><input type="number" name="age" required>
-                    <label>Gender:</label>
-                    <select name="gender"><option>Male</option><option>Female</option><option>Other</option></select>
-                    <label>Mobile:</label><input type="tel" name="mobile" required>
-                    <label>Email:</label><input type="email" name="email" required>
-                    <label>Pincode:</label><input name="pincode">
-                    <label>State:</label><input name="state">
+                    <h2>Basic Information</h2>
+
+                    <div class="form-group">
+                        <label for="writerFirstName">First Name*</label>
+                        <input type="text" id="writerFirstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerLastName">Last Name*</label>
+                        <input type="text" id="writerLastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerDob">Date of Birth*</label>
+                        <input type="date" id="writerDob" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerGender">Gender*</label>
+                        <select id="writerGender" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Other</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div class="form-column">
-                    <label>District:</label><input name="district">
-                    <label>City/Village:</label><input name="city">
-                    <label>Current Qualification:</label><input name="current_qualification">
-                    <label>Highest Qualification:</label><input name="highest_qualification">
-                    <label>Language Type:</label><input name="language">
-                    <label>Username:</label><input name="username" required>
-                    <label>Password:</label><input type="password" name="password" required>
-                    <label>Confirm Password:</label><input type="password" name="confirm_password" required>
+                    <h2>Contact Information</h2>
+
+                    <div class="form-group">
+                        <label for="writerMobile">Mobile* (10 digits)</label>
+                        <input type="tel" id="writerMobile" pattern="[0-9]{10}" placeholder="e.g. 9876543210" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerEmail">Email*</label>
+                        <input type="email" id="writerEmail" placeholder="example@gmail.com" required>
+                    </div>
+
+                    <h2 style="margin-top: 30px;">Address Information</h2>
+
+                    <div class="form-group">
+                        <label for="writerCity">City/Village*</label>
+                        <input type="text" id="writerCity" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerDistrict">District*</label>
+                        <input type="text" id="writerDistrict" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerState">State/UT*</label>
+                        <select id="writerState" required>
+                            <option value="">-- Select State --</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <!-- Add all Indian states and UTs here -->
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="submit-wrapper">
-                <button class="submit-btn" type="submit">REGISTER</button>
+
+            <div class="form-container" style="margin-top: 30px;">
+                <div class="form-column">
+                    <h2>Employment Information</h2>
+
+                    <div class="form-group">
+                        <label for="writerEmploymentStatus">Employment Status*</label>
+                        <select id="writerEmploymentStatus" required onchange="toggleEmploymentFields('writer')">
+                            <option value="">-- Select Status --</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student</option>
+                            <option value="Retired">Retired</option>
+                        </select>
+                    </div>
+
+                    <div id="writerEmploymentFields" class="hidden">
+                        <div class="form-group">
+                            <label for="writerOrganization">Organization*</label>
+                            <input type="text" id="writerOrganization">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="writerDesignation">Designation*</label>
+                            <input type="text" id="writerDesignation">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="writerSector">Sector*</label>
+                            <select id="writerSector">
+                                <option value="">-- Select Sector --</option>
+                                <option value="Private">Private</option>
+                                <option value="Government">Government</option>
+                                <option value="Public Sector">Public Sector</option>
+                                <option value="Self Employed">Self Employed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <h2>Education Information</h2>
+
+                    <h3>Current Education</h3>
+                    <div class="form-group">
+                        <label for="writerCurrentQualification">Qualification</label>
+                        <select id="writerCurrentQualification">
+                            <option value="">-- Select Qualification --</option>
+                            <option value="High School">High School</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerCurrentInstitution">Institution</label>
+                        <input type="text" id="writerCurrentInstitution">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerCurrentYear">Year of Completion</label>
+                        <select id="writerCurrentYear">
+                            <option value="">-- Select Year --</option>
+                            <!-- Years will be populated by JavaScript -->
+                        </select>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Highest Education</h3>
+                    <div class="form-group">
+                        <label for="writerHighestQualification">Qualification</label>
+                        <select id="writerHighestQualification">
+                            <option value="">-- Select Qualification --</option>
+                            <option value="High School">High School</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerHighestInstitution">Institution</label>
+                        <input type="text" id="writerHighestInstitution">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerHighestYear">Year of Completion</label>
+                        <select id="writerHighestYear">
+                            <option value="">-- Select Year --</option>
+                            <!-- Years will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 30px;">
+                <div class="form-column">
+                    <h2>Writing Information</h2>
+
+                    <div class="form-group">
+                        <label for="writerLanguageType">Language Type*</label>
+                        <input type="text" id="writerLanguageType" required>
+                    </div>
+
+                    <h2 style="margin-top: 30px;">Communication Preferences</h2>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="writerEmailPref">
+                        <label for="writerEmailPref">Email</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="writerSMSPref">
+                        <label for="writerSMSPref">SMS</label>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <h2>Signup Information</h2>
+
+                    <div class="form-group">
+                        <label for="writerUsername">Username*</label>
+                        <input type="text" id="writerUsername" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerPassword">Password*</label>
+                        <input type="password" id="writerPassword" placeholder="Aman@2005 (At least 4 chars, 1 special char, 4 digits)" required>
+                        <div id="writerPasswordError" class="error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writerConfirmPassword">Confirm Password*</label>
+                        <input type="password" id="writerConfirmPassword" required>
+                        <div id="writerConfirmPasswordError" class="error"></div>
+                    </div>
+
+                    <button type="submit" class="btn">REGISTER</button>
+                </div>
             </div>
         </form>
-
     </div>
 
+    <footer>
+        <p>&copy; 2023 Accessibility Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle between disabled candidate and writer forms
+        function toggleForms() {
+            const userType = document.getElementById('userType').value;
+            document.getElementById('disabledForm').classList.add('hidden');
+            document.getElementById('writerForm').classList.add('hidden');
+
+            if (userType === 'disabled') {
+                document.getElementById('disabledForm').classList.remove('hidden');
+            } else if (userType === 'writer') {
+                document.getElementById('writerForm').classList.remove('hidden');
+            }
+
+            // Populate year dropdowns
+            populateYearDropdowns();
+        }
+
+        // Toggle employment fields based on employment status
+        function toggleEmploymentFields(formType) {
+            const employmentStatus = document.getElementById(`${formType}EmploymentStatus`).value;
+            const employmentFields = document.getElementById(`${formType}EmploymentFields`);
+
+            if (employmentStatus === 'Employed') {
+                employmentFields.classList.remove('hidden');
+                // Make fields required
+                document.getElementById(`${formType}Organization`).required = true;
+                document.getElementById(`${formType}Designation`).required = true;
+                document.getElementById(`${formType}Sector`).required = true;
+            } else {
+                employmentFields.classList.add('hidden');
+                // Remove required attribute
+                document.getElementById(`${formType}Organization`).required = false;
+                document.getElementById(`${formType}Designation`).required = false;
+                document.getElementById(`${formType}Sector`).required = false;
+            }
+        }
+
+        // Populate year dropdowns
+        function populateYearDropdowns() {
+            const currentYear = new Date().getFullYear();
+            const startYear = currentYear - 50;
+
+            // Disabled candidate form
+            const disabledCurrentYear = document.getElementById('disabledCurrentYear');
+            const disabledHighestYear = document.getElementById('disabledHighestYear');
+
+            // Writer form
+            const writerCurrentYear = document.getElementById('writerCurrentYear');
+            const writerHighestYear = document.getElementById('writerHighestYear');
+
+            // Clear existing options
+            disabledCurrentYear.innerHTML = '<option value="">-- Select Year --</option>';
+            disabledHighestYear.innerHTML = '<option value="">-- Select Year --</option>';
+            writerCurrentYear.innerHTML = '<option value="">-- Select Year --</option>';
+            writerHighestYear.innerHTML = '<option value="">-- Select Year --</option>';
+
+            // Add years
+            for (let year = currentYear; year >= startYear; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+
+                disabledCurrentYear.appendChild(option.cloneNode(true));
+                disabledHighestYear.appendChild(option.cloneNode(true));
+                writerCurrentYear.appendChild(option.cloneNode(true));
+                writerHighestYear.appendChild(option.cloneNode(true));
+            }
+        }
+
+        // Password validation
+        function validatePassword(password, confirmPassword, passwordErrorId, confirmErrorId) {
+            const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9].*[0-9].*[0-9].*[0-9]).{9,}$/;
+            const passwordError = document.getElementById(passwordErrorId);
+            const confirmError = document.getElementById(confirmErrorId);
+            let isValid = true;
+
+            // Validate password format
+            if (!passwordRegex.test(password)) {
+                passwordError.textContent = 'Password must be at least 9 characters, start with a capital letter, contain at least one special character, and include at least 4 digits.';
+                isValid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                confirmError.textContent = 'Passwords do not match.';
+                isValid = false;
+            } else {
+                confirmError.textContent = '';
+            }
+
+            return isValid;
+        }
+
+        // Form submission handlers
+        document.getElementById('disabledForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const password = document.getElementById('disabledPassword').value;
+            const confirmPassword = document.getElementById('disabledConfirmPassword').value;
+
+            if (validatePassword(password, confirmPassword, 'disabledPasswordError', 'disabledConfirmPasswordError')) {
+                alert('Disabled candidate registration submitted successfully!');
+                // In a real application, you would send the form data to a server here
+            }
+        });
+
+        document.getElementById('writerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const password = document.getElementById('writerPassword').value;
+            const confirmPassword = document.getElementById('writerConfirmPassword').value;
+
+            if (validatePassword(password, confirmPassword, 'writerPasswordError', 'writerConfirmPasswordError')) {
+                alert('Writer registration submitted successfully!');
+                // In a real application, you would send the form data to a server here
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            populateYearDropdowns();
+
+            // Add event listeners for employment status changes
+            document.getElementById('disabledEmploymentStatus').addEventListener('change', function() {
+                toggleEmploymentFields('disabled');
+            });
+
+            document.getElementById('writerEmploymentStatus').addEventListener('change', function() {
+                toggleEmploymentFields('writer');
+            });
+        });
+    </script>
 </body>
 </html>

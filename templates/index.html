@@ -1,119 +1,388 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Accessible Exam Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Exam Support | Hand_2_Write</title>
     <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --accent-color: #457b9d;
+            --light-color: #f1faee;
+            --dark-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            text-align: center;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
         }
 
-        /* Top Banner Styling */
-        .top-banner {
-            background-color: #333;
-            overflow: hidden;
-            font-size: 18px;
-            padding: 10px 0;
+        /* Navigation Bar */
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .top-banner a {
+        .logo {
             color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-            display: inline-block;
-        }
-
-        .top-banner a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        /* Header Section */
-        .header {
-            font-size: 3em;
-            color: red; /* Red color for the header */
+            font-size: 1.8rem;
             font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 4rem 2rem;
             text-align: center;
-            padding-top: 20px;
-            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
         }
 
-        h2 {
-            color: blue; /* Blue color for subheadings */
-            font-size: 2em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-        }
-
-        p {
-            font-size: 1.1em;
-            line-height: 1.6em;
-            color: #333;
+        .hero p {
+            font-size: 1.2rem;
             max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .image-container {
-            max-width: 80%;
-            margin-top: 20px;
-            padding: 20px;
-            border: 5px solid black; /* Black border around the image */
-            display: inline-block;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .section-title {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
-        img {
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 0.5rem auto;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border: 5px solid var(--dark-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
             width: 100%;
-            border-radius: 8px;
+            height: auto;
+            display: block;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: white;
+            padding: 4rem 2rem;
+        }
+
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/" class="logo">HAND_2_<span>WRITE</span></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/signup">Sign Up</a>
+            <a href="/login">Login</a>
+            <a href="#help">Help</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
 
-    <!-- Top Banner with Navigation -->
-    <div class="top-banner">
-    <a href="/">Home</a>
-    <a href="/signup">Signup</a>
-    <a href="/login">Login</a>
-    <a href="#help">Help</a>
-    <a href="#about">About</a>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Accessible Exam Support</h1>
+        <p>Connecting disabled individuals with qualified scribes for their examinations</p>
+        <div class="cta-buttons">
+            <a href="/signup" class="btn btn-primary">Sign Up Now</a>
+            <a href="/login" class="btn btn-secondary">Login</a>
+        </div>
+    </section>
 
-    <!-- Main Content -->
-    <div class="header">Accessible Exam Support</div>
+    <!-- About Section -->
+    <section class="about">
+        <h2 class="section-title">Welcome to HAND_2_WRITE</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Our platform provides essential support for disabled individuals, particularly those with anophthalmia (without eyes) and amputations (missing limbs/hands), by connecting them with qualified scribes for their examinations.</p>
+                <p>In today's world, disabled individuals often face significant challenges in finding reliable scribes/writers for their exams. Our innovative online platform bridges this gap by creating a direct connection between those in need and available writers.</p>
+                <p>Through our comprehensive system, disabled persons can register their requirements with assistance, while we maintain an extensive database of verified writers. Our matching algorithm then pairs candidates with the most suitable scribe based on availability, location, and specific needs.</p>
+            </div>
+            <div class="about-image">
+                <img src="/static/image.png" alt="Accessibility support illustration">
+            </div>
+        </div>
+    </section>
 
-    <h2>WELCOME TO HAND_2_WRITE</h2>
-    <p>
-        A Help for Disabled Person (specially for Anophthalmia - Person without eyes & Amputee - person missing two limbs/Hands) to find their scribe to write their exams.
-    </p>
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">How It Works</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">👤</div>
+                <h3 class="feature-title">User Registration</h3>
+                <p>Disabled candidates can register with their details and exam requirements with the help of an assistant.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3 class="feature-title">Writer Database</h3>
+                <p>We maintain a verified database of qualified writers available for exam assistance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">Smart Matching</h3>
+                <p>Our system matches candidates with suitable writers based on availability and requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3 class="feature-title">Exam Coordination</h3>
+                <p>We facilitate scheduling and coordination between candidates and their assigned writers.</p>
+            </div>
+        </div>
+    </section>
 
-    <h2></h2>
-    <p>
-        Nowadays, disabled individuals, especially those with anophthalmia or amputations, face difficulty in finding a scribe/writer for their exams.
-        Our website aims to help them by providing an online platform to connect with scribes/writers.
-    </p>
-    <p>
-        We have created a website where a disabled person can enter their details with the assistance of another person. On the other hand,
-        we also maintain a database of available writers.
-    </p>
-    <p>
-        Based on availability, our website will match and provide them with a suitable scribe/writer.
-    </p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+        </div>
+        <p class="copyright">© 2023 HAND_2_WRITE. All rights reserved.</p>
+    </footer>
 
-    <div class="image-container">
-        <img src="{{ url_for('static', filename='image.png') }}" alt="project image">
-    </div>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
+        // Animation for feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Form validation for login/signup would go here in a real implementation
+    </script>
 </body>
 </html>
