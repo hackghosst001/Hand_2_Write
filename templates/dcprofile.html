@@ -3,450 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hand_2_write - Candidate Profile</title>
+    <title>Disabled Candidate Profile - Hand2Write</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: #f3f4f6;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .profile-container {
+            background-color: #fff;
             padding: 20px;
-        }
-
-        .welcome-banner {
-            background-color: #2563eb;
-            color: white;
-            padding: 16px;
             border-radius: 8px;
-            margin-bottom: 24px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+        }
+        .profile-info p {
+            margin-bottom: 10px;
+        }
+        .logout-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
             text-align: center;
         }
-
-        .welcome-banner h1 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        @media (min-width: 768px) {
-            .profile-grid {
-                grid-template-columns: 1fr 2fr;
-            }
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .card-header {
-            padding: 16px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .card-header h2 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #111827;
-        }
-
-        .card-content {
-            padding: 16px;
-        }
-
-        .profile-pic-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .profile-pic {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-            border: 4px solid #2563eb;
-            background-color: #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            overflow: hidden;
-        }
-
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-pic .icon {
-            width: 64px;
-            height: 64px;
-            color: #6b7280;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        @media (min-width: 640px) {
-            .info-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .info-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .info-item {
-            margin-bottom: 12px;
-        }
-
-        .info-label {
-            font-size: 14px;
-            font-weight: 500;
-            color: #4b5563;
-            margin-bottom: 4px;
-        }
-
-        .info-value {
-            padding: 8px;
-            background-color: #f3f4f6;
-            border-radius: 4px;
-            font-size: 15px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 12px;
-        }
-
-        .two-column-section {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        @media (min-width: 768px) {
-            .two-column-section {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .logout-button:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <!-- Welcome Banner -->
-        <div class="welcome-banner">
-            <h1>Welcome to Hand_2_write</h1>
+    <div class="profile-container">
+        <h2>Disabled Candidate Profile</h2>
+        <div class="profile-info">
+            <p><strong>Name:</strong> <span id="dc-name"></span></p>
+            <p><strong>Age:</strong> <span id="dc-age"></span></p>
+            <p><strong>Gender:</strong> <span id="dc-gender"></span></p>
+            <p><strong>Pincode:</strong> <span id="dc-pincode"></span></p>
+            <p><strong>State:</strong> <span id="dc-state"></span></p>
+            <p><strong>District:</strong> <span id="dc-district"></span></p>
+            <p><strong>City/Village:</strong> <span id="dc-cityVillage"></span></p>
+            <p><strong>Mobile:</strong> <span id="dc-mobile"></span></p>
+            <p><strong>Email:</strong> <span id="dc-email"></span></p>
+            <p><strong>Disability Type:</strong> <span id="dc-disableType"></span></p>
+            <p><strong>Current Qualification:</strong> <span id="dc-currentQualification"></span></p>
+            <p><strong>Current Institution:</strong> <span id="dc-currentInstitution"></span></p>
+            <p><strong>Employment Status:</strong> <span id="dc-employmentStatus"></span></p>
+            <p><strong>Organization:</strong> <span id="dc-organization"></span></p>
+            <p><strong>Designation:</strong> <span id="dc-designation"></span></p>
+            <p><strong>Highest Qualification:</strong> <span id="dc-highestQualification"></span></p>
+            <p><strong>Highest Institution:</strong> <span id="dc-highestInstitution"></span></p>
+            <p><strong>Communication Preference:</strong> <span id="dc-communication"></span></p>
+            <p><strong>Accessibility Features:</strong> <span id="dc-accessibility"></span></p>
+            <p><strong>Exam Name:</strong> <span id="dc-examName"></span></p>
+            <p><strong>Exam Center:</strong> <span id="dc-examCenter"></span></p>
+            <p><strong>Exam Language:</strong> <span id="dc-examLanguage"></span></p>
         </div>
-
-        <div class="profile-grid">
-            <!-- Left Column - Profile Picture -->
-            <div class="card">
-                <div class="card-header">
-                    <h2>Profile Picture</h2>
-                </div>
-                <div class="card-content">
-                    <div class="profile-pic-container">
-                        <div class="profile-pic" id="profilePic">
-                            <!-- Profile picture will be inserted here by JavaScript -->
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column - Profile Information -->
-            <div>
-                <!-- Basic Info -->
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h2>Basic Info</h2>
-                    </div>
-                    <div class="card-content">
-                        <div class="info-grid" id="basicInfo">
-                            <!-- Basic info will be inserted here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Address Info -->
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h2>Address Info</h2>
-                    </div>
-                    <div class="card-content">
-                        <div class="info-grid" id="addressInfo">
-                            <!-- Address info will be inserted here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h2>Contact Info</h2>
-                    </div>
-                    <div class="card-content">
-                        <div class="info-grid" id="contactInfo">
-                            <!-- Contact info will be inserted here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Disable Type -->
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h2>Disable Type</h2>
-                    </div>
-                    <div class="card-content">
-                        <div id="disableType">
-                            <!-- Disable type will be inserted here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Current Education and Employment -->
-                <div class="two-column-section mb-6">
-                    <!-- Current Education -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Current Education Information</h2>
-                        </div>
-                        <div class="card-content">
-                            <div id="currentEducation">
-                                <!-- Current education info will be inserted here by JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Employment -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Employment Information</h2>
-                        </div>
-                        <div class="card-content">
-                            <div id="employmentInfo">
-                                <!-- Employment info will be inserted here by JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Highest Education and Preferences -->
-                <div class="two-column-section mb-6">
-                    <!-- Highest Education -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Highest Education Information</h2>
-                        </div>
-                        <div class="card-content">
-                            <div id="highestEducation">
-                                <!-- Highest education info will be inserted here by JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Preferences -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Preferences</h2>
-                        </div>
-                        <div class="card-content">
-                            <div id="preferences">
-                                <!-- Preferences info will be inserted here by JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exam Info -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Upcoming Examination Info</h2>
-                    </div>
-                    <div class="card-content">
-                        <div class="info-grid" id="examInfo">
-                            <!-- Exam info will be inserted here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a href="/logout/" class="logout-button">Logout</a>
     </div>
 
     <script>
-        // This data would normally come from your Flask backend
-        // For demonstration, we're using sample data
-        const profileData = {
-            name: "Rajesh Kumar",
-            age: "32",
-            gender: "Male",
-            pincode: "560001",
-            state: "Karnataka",
-            district: "Bangalore",
-            cityVillage: "Bangalore",
-            mobile: "9876543210",
-            email: "rajesh.kumar@example.com",
-            disableType: "Visual Impairment",
-            currentEducation: {
-                highestQualification: "B.Com",
-                institution: "Bangalore University",
-                yearOfCompletion: "2015"
-            },
-            employment: {
-                status: "Employed",
-                organization: "ABC Corporation",
-                designation: "Accounts Executive"
-            },
-            highestEducation: {
-                highestQualification: "M.Com",
-                institution: "Bangalore University",
-                yearOfCompletion: "2017"
-            },
-            preferences: {
-                communication: "Email",
-                accessibility: "Screen Reader",
-                languageType: "English"
-            },
-            examInfo: {
-                date: "2023-12-15",
-                name: "Civil Services Preliminary",
-                minQualification: "Graduate",
-                center: "Bangalore Center",
-                languageType: "English"
-            },
-            profilePic: null // This would be a URL to the image if available
-        };
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/dc-profile')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Received DC profile data:", JSON.stringify(data, null, 2));
 
-        // Function to create an info item
-        function createInfoItem(label, value) {
-            const item = document.createElement('div');
-            item.className = 'info-item';
-
-            const labelElement = document.createElement('div');
-            labelElement.className = 'info-label';
-            labelElement.textContent = label;
-
-            const valueElement = document.createElement('div');
-            valueElement.className = 'info-value';
-            valueElement.textContent = value || 'Not provided';
-
-            item.appendChild(labelElement);
-            item.appendChild(valueElement);
-
-            return item;
-        }
-
-        // Function to populate a section
-        function populateSection(sectionId, items) {
-            const section = document.getElementById(sectionId);
-            section.innerHTML = '';
-
-            items.forEach(item => {
-                section.appendChild(createInfoItem(item.label, item.value));
+                if (data && !data.error) {
+                    document.getElementById('dc-name').textContent = data.name || '';
+                    document.getElementById('dc-age').textContent = data.age || '';
+                    document.getElementById('dc-gender').textContent = data.gender || '';
+                    document.getElementById('dc-pincode').textContent = data.pincode || '';
+                    document.getElementById('dc-state').textContent = data.state || '';
+                    document.getElementById('dc-district').textContent = data.district || '';
+                    document.getElementById('dc-cityVillage').textContent = data.cityVillage || '';
+                    document.getElementById('dc-mobile').textContent = data.mobile || '';
+                    document.getElementById('dc-email').textContent = data.email || '';
+                    document.getElementById('dc-disableType').textContent = data.disableType || '';
+                    document.getElementById('dc-currentQualification').textContent = data.currentEducation ? (data.currentEducation.highestQualification || '') : '';
+                    document.getElementById('dc-currentInstitution').textContent = data.currentEducation ? (data.currentEducation.institution || '') : '';
+                    document.getElementById('dc-employmentStatus').textContent = data.employment ? (data.employment.status || '') : '';
+                    document.getElementById('dc-organization').textContent = data.employment ? (data.employment.organization || '') : '';
+                    document.getElementById('dc-designation').textContent = data.employment ? (data.employment.designation || '') : '';
+                    document.getElementById('dc-highestQualification').textContent = data.highestEducation ? (data.highestEducation.highestQualification || '') : '';
+                    document.getElementById('dc-highestInstitution').textContent = data.highestEducation ? (data.highestEducation.institution || '') : '';
+                    document.getElementById('dc-communication').textContent = data.preferences ? (data.preferences.communication || '') : '';
+                    document.getElementById('dc-accessibility').textContent = data.preferences ? (data.preferences.accessibility || '') : '';
+                    document.getElementById('dc-examName').textContent = data.examInfo ? (data.examInfo.name || '') : '';
+                    document.getElementById('dc-examCenter').textContent = data.examInfo ? (data.examInfo.center || '') : '';
+                    document.getElementById('dc-examLanguage').textContent = data.examInfo ? (data.examInfo.languageType || '') : '';
+                } else if (data && data.error) {
+                    console.error('Error fetching DC profile:', data.error);
+                    // Optionally display an error message on the page
+                } else {
+                    console.error('Error: Invalid response fetching DC profile');
+                    // Optionally display a generic error message
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching DC profile:', error);
+                // Optionally display a network error message
             });
-        }
-
-        // Populate Basic Info
-        populateSection('basicInfo', [
-            { label: 'Name', value: profileData.name },
-            { label: 'Age', value: profileData.age },
-            { label: 'Gender', value: profileData.gender }
-        ]);
-
-        // Populate Address Info
-        populateSection('addressInfo', [
-            { label: 'Pincode', value: profileData.pincode },
-            { label: 'State', value: profileData.state },
-            { label: 'District', value: profileData.district },
-            { label: 'City/Village', value: profileData.cityVillage }
-        ]);
-
-        // Populate Contact Info
-        populateSection('contactInfo', [
-            { label: 'Mobile', value: profileData.mobile },
-            { label: 'Email', value: profileData.email }
-        ]);
-
-        // Populate Disable Type
-        populateSection('disableType', [
-            { label: 'Type of Disability', value: profileData.disableType }
-        ]);
-
-        // Populate Current Education
-        populateSection('currentEducation', [
-            { label: 'Highest Qualification', value: profileData.currentEducation.highestQualification },
-            { label: 'Institution', value: profileData.currentEducation.institution },
-            { label: 'Year of Completion', value: profileData.currentEducation.yearOfCompletion }
-        ]);
-
-        // Populate Employment Info
-        populateSection('employmentInfo', [
-            { label: 'Employment Status', value: profileData.employment.status },
-            { label: 'Organization', value: profileData.employment.organization },
-            { label: 'Designation', value: profileData.employment.designation }
-        ]);
-
-        // Populate Highest Education
-        populateSection('highestEducation', [
-            { label: 'Highest Qualification', value: profileData.highestEducation.highestQualification },
-            { label: 'Institution', value: profileData.highestEducation.institution },
-            { label: 'Year of Completion', value: profileData.highestEducation.yearOfCompletion }
-        ]);
-
-        // Populate Preferences
-        populateSection('preferences', [
-            { label: 'Communication Preferences', value: profileData.preferences.communication },
-            { label: 'Accessibility Preferences', value: profileData.preferences.accessibility },
-            { label: 'Language Type', value: profileData.preferences.languageType }
-        ]);
-
-        // Populate Exam Info
-        populateSection('examInfo', [
-            { label: 'Date of Exam', value: profileData.examInfo.date },
-            { label: 'Name of Exam', value: profileData.examInfo.name },
-            { label: 'Minimum Qualification', value: profileData.examInfo.minQualification },
-            { label: 'Center of Exam', value: profileData.examInfo.center },
-            { label: 'Language Type', value: profileData.examInfo.languageType }
-        ]);
-
-        // Set profile picture if available
-        const profilePicElement = document.getElementById('profilePic');
-        if (profileData.profilePic) {
-            profilePicElement.innerHTML = `<img src="${profileData.profilePic}" alt="Profile Picture">`;
-        }
+        });
     </script>
 </body>
 </html>
