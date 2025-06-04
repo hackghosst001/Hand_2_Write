@@ -1,0 +1,46 @@
+/* Style only login-related content to avoid main.css conflict */
+
+.login-container {
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Password input: big dots, modern look */
+.password-input {
+    font-size: 18px;
+    font-family: 'Segoe UI Symbol', 'Arial', sans-serif;
+    letter-spacing: 0.1em;
+}
+
+/* Toggle icon inside input */
+.password-toggle {
+    position: absolute;
+    top: 38px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #6c757d;
+    z-index: 10;
+}
+
+.password-toggle:hover {
+    color: #0d6efd;
+}
+
+/* Ensure form elements align well */
+.login-form label {
+    font-weight: 500;
+}
+
+.login-form input {
+    border-radius: 6px;
+}
+
+.login-form .btn {
+    font-size: 16px;
+    padding: 10px 0;
+    border-radius: 8px;
+}

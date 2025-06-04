@@ -1,0 +1,133 @@
+/* --- static/css/profile.css --- */
+
+/* ... (your existing profile.css) ... */
+
+/* --- static/css/wprofile.css --- */
+
+/* Specific styles for the writer profile page */
+
+.notifications-container {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.notifications-header {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.notifications-box {
+    padding: 15px;
+}
+
+.notification-item {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.notification-item p {
+    margin-bottom: 8px;
+}
+
+.accept-request {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.accept-request:hover {
+    background-color: #1e7e34;
+}
+
+.acceptance-status {
+    font-size: 0.9em;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.acceptance-status.accepted {
+    color: green;
+}
+
+.acceptance-status.failed, .acceptance-status.error {
+    color: red;
+}
+
+.candidate-info {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.accepted-requests-container {
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
+.accepted-requests-container h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.accepted-notification {
+    border-left: 5px solid green;
+}
+/* --- static/css/wprofile.css --- */
+
+/* Existing styles for notifications-container, notifications-box, notification-item, etc. */
+
+.accepted-notification {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb;
+}
+
+/* Style for the 'Accepted' status text */
+.acceptance-status.accepted {
+    color: green;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Style for the 'Failed' status text */
+.acceptance-status.failed {
+    color: red;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Style for the 'Error' status text */
+.acceptance-status.error {
+    color: orange;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Style for candidate info */
+.candidate-info {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}

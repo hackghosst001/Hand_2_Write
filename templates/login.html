@@ -1,66 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In - Hand2Write</title>
-    <style>
-        /* ... (your existing CSS styles) ... */
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h2>Log In</h2>
-        <p class="error-message"></p>
-        <form id="loginForm" method="POST" action="/login">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <select name="type" required>
-                <option value="">Select User Type</option>
-                <option value="disabled">Disabled Candidate</option>
-                <option value="writer">Writer</option>
-            </select><br>
-            <button type="submit">Log In</button>
-        </form>
-        <div class="signup-link">
-            Don't have an account? <a href="/signup">Sign Up</a>
+{% extends "main.html" %}
+
+{% block title %}Login Page{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="login-container container mt-5">
+    <h2 class="text-center mb-4">Login</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/login" class="login-form">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter your email" required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginForm');
-            const errorMessage = document.querySelector('.error-message');
+        <div class="mb-3 position-relative">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control password-input" id="password" name="password" placeholder="Enter your password" required>
+            <span class="password-toggle" id="password-toggle">
+                <i class="bi bi-eye" id="toggle-icon"></i>
+            </span>
+        </div>
 
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Prevent default form submission
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
 
-                    const formData = new FormData(loginForm);
+        <p class="mt-3 text-center">Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+    </form>
+</div>
+{% endblock %}
 
-                    fetch('/login', {
-                        method: 'POST',
-                        body: formData,
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.message === 'Login successful!' && data.role) {
-                            if (data.role === 'writer') {
-                                window.location.href = '/profile/'; // Your /profile/ route handles redirection based on session role
-                            } else if (data.role === 'disabled') {
-                                window.location.href = '/profile/'; // Your /profile/ route handles redirection based on session role
-                            }
-                        } else if (data.error) {
-                            errorMessage.textContent = data.error;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error during login:', error);
-                        errorMessage.textContent = 'An error occurred during login.';
-                    });
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+{% block scripts %}
+<script>
+    const passwordInput = document.getElementById('password');
+    const passwordToggle = document.getElementById('password-toggle');
+    const toggleIcon = document.getElementById('toggle-icon');
+
+    passwordToggle.addEventListener('click', function () {
+        const isHidden = passwordInput.type === 'password';
+        passwordInput.type = isHidden ? 'text' : 'password';
+        toggleIcon.classList.toggle('bi-eye');
+        toggleIcon.classList.toggle('bi-eye-slash');
+    });
+</script>
+{% endblock %}

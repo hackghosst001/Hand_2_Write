@@ -1,0 +1,151 @@
+/* --- static/css/index.css --- */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.index-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.index-header {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.index-logo-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.index-logo-container img {
+    max-height: 80px;
+    margin-right: 20px;
+}
+
+.index-title-container h1 {
+    font-size: 2.2em;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.index-title-container h2 {
+    font-size: 1.1em;
+    color: #777;
+    margin-top: 0;
+}
+
+.index-body {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    flex-grow: 1;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+.index-image-container {
+    width: 55%;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ddd; /* Placeholder color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 1.2em;
+    transition: background-image 1s ease-in-out;
+}
+
+.index-image-container.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+.index-right-section {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.index-join-us-container {
+    text-align: left;
+}
+
+.index-join-us-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #5cb85c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.index-join-us-button:hover {
+    background-color: #4cae4c;
+}
+
+.index-text-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.index-mission {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.index-footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+}
+
+.index-copyright {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .index-body {
+        flex-direction: column;
+        align-items: center;
+    }
+    .index-image-container, .index-right-section {
+        width: 95%;
+    }
+    .index-logo-title-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .index-logo-container {
+        margin-bottom: 10px;
+    }
+    .index-title-container {
+        text-align: left;
+    }
+}

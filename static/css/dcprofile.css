@@ -1,0 +1,225 @@
+/* --- static/css/dcprofile.css --- */
+
+/* Page-specific body styling */
+body {
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+    color: #333;
+}
+
+/* Page Title */
+h1.text-primary {
+    color: #007bff;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+/* Main Container */
+.container {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Profile Text Styling */
+.container p {
+    font-size: 1.1em;
+    margin: 10px 0;
+    color: #555;
+}
+
+/* Good to see you heading */
+.container h1 {
+    font-size: 1.8em;
+    color: #28a745;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Logout Button */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Upcoming Exam Info Section */
+.header {
+    /* ... previous CSS ... */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding: 10px 20px;
+    background-color: #f1f9ff;
+    border-radius: 8px;
+    border-left: 5px solid #007bff;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+.add-button {
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+/* Exam Form Section */
+.exam-form {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.exam-form h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.exam-form .btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.exam-form .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.exam-form .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.exam-form .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    margin-left: 10px;
+}
+
+.exam-form .btn-secondary:hover {
+    background-color: #545b62;
+}
+
+/* Table Header */
+.table-header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Added one more column for status */
+    gap: 15px;
+    background-color: #e9f5ff;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Nearby Writers Section */
+.nearby-writers {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.nearby-writers h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.writer-card {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.writer-card p {
+    margin: 0;
+}
+
+.send-notification {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.send-notification:hover {
+    background-color: #138496;
+}
+
+.notification-status {
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+
+.notification-status.sent {
+    color: green;
+}
+
+.notification-status.failed, .notification-status.error {
+    color: red;
+}

@@ -1,0 +1,99 @@
+/* --- static/css/main.css --- */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light gray background for base */
+    color: #333;
+    line-height: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+    background-color: #e9ecef; /* Light background for navbar */
+    padding: 10px 0;
+    border-bottom: 1px solid #ced4da; /* Subtle bottom border */
+}
+
+.navbar .navbar-brand {
+    color: #495057;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar .navbar-brand:hover {
+    color: #007bff; /* Primary blue on hover */
+}
+
+.navbar .nav-link {
+    color: #495057;
+    font-size: 1em;
+    padding: 8px 15px;
+}
+
+.navbar .nav-link:hover {
+    color: #007bff;
+}
+
+.navbar-toggler {
+    border-color: rgba(0, 123, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 123, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- Footer Styling --- */
+.footer {
+    background-color: #f8f9fa; /* Light background for footer */
+    color: #6c757d;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    border-top: 1px solid #ced4da; /* Subtle top border */
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.footer .footer-links li {
+    margin-left: 10px;
+}
+
+.footer .footer-links li a {
+    color: #007bff; /* Primary blue for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer .footer-links li a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* --- Content Styling (Base) --- */
+.content {
+    padding: 20px;
+    min-height: 40vh; /* Ensure some minimum height for content area */
+}

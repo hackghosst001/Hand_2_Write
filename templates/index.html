@@ -1,86 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hand2Write - Connecting Writers and Candidates</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
-        }
-        h1 {
-            color: #007bff;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-        p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        .image-container {
-            margin-bottom: 30px;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-        }
-        .links {
-            margin-top: 30px;
-        }
-        .links a {
-            display: inline-block;
-            padding: 12px 24px;
-            text-decoration: none;
-            color: #fff;
-            background-color: #28a745;
-            border-radius: 6px;
-            margin: 0 10px;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-        .links a:hover {
-            background-color: #218838;
-        }
-        .tagline {
-            color: #6c757d;
-            font-style: italic;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Welcome to Hand2Write</h1>
-        <div class="image-container">
-            <img src="{{ url_for('static', filename='image.png') }}" alt="Hand2Write Platform">
+{% extends 'main.html' %}
+
+{% block title %}Hand2Write - Connecting Writers and Candidates{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageContainer = document.querySelector('.index-image-container');
+            if (!imageContainer) {
+                console.error('index-image-container element not found!');
+                return;
+            }
+
+            const images = [
+                "{{ url_for('static', filename='img/1.png') }}",
+                "{{ url_for('static', filename='img/2.png') }}",
+                "{{ url_for('static', filename='img/3.png') }}",
+                "{{ url_for('static', filename='img/4.png') }}",
+                "{{ url_for('static', filename='img/5.png') }}"
+            ];
+            let currentIndex = 0;
+
+            function getImageUrl(filename) {
+                return images.length > 0 ? images[(currentIndex) % images.length] : '';
+            }
+
+            function changeImage() {
+                const imageUrl = getImageUrl(images);
+                if (imageUrl) {
+                    imageContainer.style.backgroundImage = `url("${imageUrl}")`;
+                    imageContainer.classList.add('fade-in');
+                    setTimeout(() => {
+                        imageContainer.classList.remove('fade-in');
+                    }, 1000); // Duration of fade-in
+                    currentIndex = (currentIndex + 1) % images.length;
+                }
+            }
+
+            // Set initial image and start the interval if there are images
+            if (images.length > 0) {
+                changeImage();
+                setInterval(changeImage, 3000);
+            } else {
+                imageContainer.style.backgroundColor = '#ddd'; // Placeholder if no images
+                imageContainer.innerHTML = '<p style="text-align: center; line-height: 300px; color: #777;">Image will slide here</p>';
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="index-container">
+        <div class="index-header">
+            <div class="index-logo-title-container">
+                <div class="index-logo-container">
+                    <img src="{{ url_for('static', filename='img/image.png') }}" alt="Hand2Write Logo">
+                </div>
+                <div class="index-title-container">
+                    <h1>HAND_TO_WRITE</h1>
+                    <h2>Empowering Connections, Enabling Support</h2>
+                </div>
+            </div>
         </div>
-        <p>Connecting skilled writers with talented disabled candidates who require assistance during exams. Our platform aims to create a fair and inclusive environment for everyone.</p>
-        <div class="links">
-            <a href="/signup">Get Started</a>
-            <a href="/login">Log In</a>
+        <div class="index-body">
+            <div class="index-image-container">
+            </div>
+            <div class="index-right-section">
+                <div class="index-join-us-container">
+                    <a href="#" class="index-join-us-button">Join US</a>
+                </div>
+                <div class="index-text-container">
+                    <p class="index-mission">Our mission is to connect compassionate writers with talented candidates with disabilities, fostering an inclusive and equitable examination environment.</p>
+                </div>
+            </div>
         </div>
-        <p class="tagline">Empowering through connection and support.</p>
+        <div class="index-footer">
+            <p class="index-copyright">© Hand2Write</p>
+        </div>
     </div>
-</body>
-</html>
+{% endblock %}

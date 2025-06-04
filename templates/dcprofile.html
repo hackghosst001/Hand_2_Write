@@ -1,117 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disabled Candidate Profile - Hand2Write</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        .profile-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #007bff;
-        }
-        .profile-info p {
-            margin-bottom: 10px;
-        }
-        .logout-button {
-            display: block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #dc3545;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-        .logout-button:hover {
-            background-color: #c82333;
-        }
-    </style>
-</head>
-<body>
-    <div class="profile-container">
-        <h2>Disabled Candidate Profile</h2>
-        <div class="profile-info">
-            <p><strong>Name:</strong> <span id="dc-name"></span></p>
-            <p><strong>Age:</strong> <span id="dc-age"></span></p>
-            <p><strong>Gender:</strong> <span id="dc-gender"></span></p>
-            <p><strong>Pincode:</strong> <span id="dc-pincode"></span></p>
-            <p><strong>State:</strong> <span id="dc-state"></span></p>
-            <p><strong>District:</strong> <span id="dc-district"></span></p>
-            <p><strong>City/Village:</strong> <span id="dc-cityVillage"></span></p>
-            <p><strong>Mobile:</strong> <span id="dc-mobile"></span></p>
-            <p><strong>Email:</strong> <span id="dc-email"></span></p>
-            <p><strong>Disability Type:</strong> <span id="dc-disableType"></span></p>
-            <p><strong>Current Qualification:</strong> <span id="dc-currentQualification"></span></p>
-            <p><strong>Current Institution:</strong> <span id="dc-currentInstitution"></span></p>
-            <p><strong>Employment Status:</strong> <span id="dc-employmentStatus"></span></p>
-            <p><strong>Organization:</strong> <span id="dc-organization"></span></p>
-            <p><strong>Designation:</strong> <span id="dc-designation"></span></p>
-            <p><strong>Highest Qualification:</strong> <span id="dc-highestQualification"></span></p>
-            <p><strong>Highest Institution:</strong> <span id="dc-highestInstitution"></span></p>
-            <p><strong>Communication Preference:</strong> <span id="dc-communication"></span></p>
-            <p><strong>Accessibility Features:</strong> <span id="dc-accessibility"></span></p>
-            <p><strong>Exam Name:</strong> <span id="dc-examName"></span></p>
-            <p><strong>Exam Center:</strong> <span id="dc-examCenter"></span></p>
-            <p><strong>Exam Language:</strong> <span id="dc-examLanguage"></span></p>
-        </div>
-        <a href="/logout/" class="logout-button">Logout</a>
-    </div>
+{% extends "main.html" %}
 
+{% block title %}Profile Page{% endblock %}
+
+{% block content %}
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/dcprofile.css') }}">
+   <h1 class="text-primary">WELCOME TO Hand_2_Write</h1>
+
+<div class="container mt-5">
+    <h2>Welcome, {{ user.name }}</h2>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Password:</strong> {{ user.password }}</p>
+        <p><strong>Type:</strong> {{ user.type }}</p>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Age:</strong> {{ user.age }}</p>
+        <p><strong>Gender:</strong> {{ user.gender }}</p>
+        <p><strong>Mobile:</strong> {{ user.mobile }}</p>
+        <p><strong>District:</strong> {{ user.district }}</p>
+        <p><strong>State:</strong> {{ user.state }}</p>
+        <p><strong>PIN-CODE:</strong> {{ user.pincode }}</p>
+        <h1> GOOD TO SEE YOU </h1>
+
+    <a href="{{ url_for('logout') }}" class="btn btn-danger mt-3">Logout</a>
+</div>
+   <div class="container">
+        <div class="header">
+            <h2>Upcoming Examination Info</h2>
+            <a href="#" class="add-button" id="addExamBtn">ADD</a>
+        </div>
+        <div class="exam-form" id="examForm" style="display: none;">
+            <h3>Add Exam Details</h3>
+            <form action="/add_exam_info" method="POST">
+                <div class="form-group">
+                    <label for="exam_date">Date of Exam:</label>
+                    <input type="date" id="exam_date" name="exam_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="exam_name">Name of Exam:</label>
+                    <input type="text" id="exam_name" name="exam_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="min_qualification">Minimum Qualification:</label>
+                    <input type="text" id="min_qualification" name="min_qualification">
+                </div>
+                <div class="form-group">
+                    <label for="exam_center">Center of Exam:</label>
+                    <input type="text" id="exam_center" name="exam_center" required>
+                </div>
+                <div class="form-group">
+                    <label for="pin_code">PIN-CODE:</label>
+                    <input type="text" id="pin_code" name="pin_code" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Exam Details</button>
+                <button type="button" class="btn btn-secondary" id="cancelExamBtn">Cancel</button>
+            </form>
+        </div>
+        <div class="table-header">
+            <div>Date of Exam</div>
+            <div>Name of Exam</div>
+            <div>Minimum Qualification</div>
+            <div>Center of Exam</div>
+            <div>PIN-CODE</div>
+            <div>Notification Status</div>
+        </div>
+        </div>
+
+    <div class="container mt-4">
+        <h2>Available Writers Nearby</h2>
+        <div class="nearby-writers" id="nearbyWriters">
+            {% if nearby_writers %}
+                {% for writer in nearby_writers %}
+                    <div class="writer-card {% if notification_status[writer._id|string] == 'accepted' %}accepted-writer{% endif %}">
+                        <p><strong>Name:</strong> {{ writer.name }}</p>
+                        <button class="btn btn-info btn-sm send-notification" data-writer-id="{{ writer._id }}" {% if notification_status[writer._id|string] == 'accepted' %}disabled{% endif %}>
+                            {% if notification_status[writer._id|string] == 'accepted' %}Accepted{% else %}Send Notification{% endif %}
+                        </button>
+                        <div class="notification-status" id="status-{{ writer._id }}">
+                            {% if notification_status[writer._id|string] == 'accepted' %}Accepted{% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No writers found in your exam pincode yet.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('/api/dc-profile')
-            .then(response => response.json())
-            .then(data => {
-                console.log("Received DC profile data:", JSON.stringify(data, null, 2));
+            const addExamBtn = document.getElementById('addExamBtn');
+            const examForm = document.getElementById('examForm');
+            const cancelExamBtn = document.getElementById('cancelExamBtn');
+            const nearbyWritersContainer = document.getElementById('nearbyWriters');
 
-                if (data && !data.error) {
-                    document.getElementById('dc-name').textContent = data.name || '';
-                    document.getElementById('dc-age').textContent = data.age || '';
-                    document.getElementById('dc-gender').textContent = data.gender || '';
-                    document.getElementById('dc-pincode').textContent = data.pincode || '';
-                    document.getElementById('dc-state').textContent = data.state || '';
-                    document.getElementById('dc-district').textContent = data.district || '';
-                    document.getElementById('dc-cityVillage').textContent = data.cityVillage || '';
-                    document.getElementById('dc-mobile').textContent = data.mobile || '';
-                    document.getElementById('dc-email').textContent = data.email || '';
-                    document.getElementById('dc-disableType').textContent = data.disableType || '';
-                    document.getElementById('dc-currentQualification').textContent = data.currentEducation ? (data.currentEducation.highestQualification || '') : '';
-                    document.getElementById('dc-currentInstitution').textContent = data.currentEducation ? (data.currentEducation.institution || '') : '';
-                    document.getElementById('dc-employmentStatus').textContent = data.employment ? (data.employment.status || '') : '';
-                    document.getElementById('dc-organization').textContent = data.employment ? (data.employment.organization || '') : '';
-                    document.getElementById('dc-designation').textContent = data.employment ? (data.employment.designation || '') : '';
-                    document.getElementById('dc-highestQualification').textContent = data.highestEducation ? (data.highestEducation.highestQualification || '') : '';
-                    document.getElementById('dc-highestInstitution').textContent = data.highestEducation ? (data.highestEducation.institution || '') : '';
-                    document.getElementById('dc-communication').textContent = data.preferences ? (data.preferences.communication || '') : '';
-                    document.getElementById('dc-accessibility').textContent = data.preferences ? (data.preferences.accessibility || '') : '';
-                    document.getElementById('dc-examName').textContent = data.examInfo ? (data.examInfo.name || '') : '';
-                    document.getElementById('dc-examCenter').textContent = data.examInfo ? (data.examInfo.center || '') : '';
-                    document.getElementById('dc-examLanguage').textContent = data.examInfo ? (data.examInfo.languageType || '') : '';
-                } else if (data && data.error) {
-                    console.error('Error fetching DC profile:', data.error);
-                    // Optionally display an error message on the page
-                } else {
-                    console.error('Error: Invalid response fetching DC profile');
-                    // Optionally display a generic error message
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching DC profile:', error);
-                // Optionally display a network error message
-            });
+            if (addExamBtn && examForm && cancelExamBtn) {
+                addExamBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    examForm.style.display = 'block';
+                });
+
+                cancelExamBtn.addEventListener('click', function() {
+                    examForm.style.display = 'none';
+                });
+            }
+
+            if (nearbyWritersContainer) {
+                nearbyWritersContainer.addEventListener('click', function(event) {
+                    if (event.target.classList.contains('send-notification') && !event.target.disabled) {
+                        const writerId = event.target.dataset.writerId;
+                        const statusDiv = document.getElementById(`status-${writerId}`);
+                        const button = event.target;
+
+                        fetch('/send_notification', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ writer_id: writerId })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                statusDiv.textContent = 'Notification Sent';
+                                statusDiv.className = 'notification-status sent';
+                                button.disabled = true;
+                                button.textContent = 'Notification Sent';
+                                // We'll handle the color change based on acceptance later
+                            } else {
+                                statusDiv.textContent = 'Failed to send notification';
+                                statusDiv.className = 'notification-status failed';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error sending notification:', error);
+                            statusDiv.textContent = 'Error sending notification';
+                            statusDiv.className = 'notification-status error';
+                        });
+                    }
+                });
+            }
         });
     </script>
-</body>
-</html>
+{% endblock %}
